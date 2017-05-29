@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A Twitter Bot How-to</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../cs290-style.css">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-9 col-offset-2">
+			<h1>Posting A Tweet</h1>
+			<section>
+				<p style="font-size: 14px">Using Twitter's REST API to post a tweet may sound like it will be difficult but it can be accomplished very easily. Lets take a look.</p> <br>
+
+                <script src="https://pastebin.com/embed_js/YyTqN5wd"></script><br>
+
+                <p style="font-size: 14px">Building off what we set up earlier, we see new code from lines 10 – 25.
+                    <ul> 
+                    <li style="font-size: 14px"><em><b>Lines 10 - 12</b></em>  are simply creating a variable that I called Tweet, that will simply hold our text. Line 11 is holding our status parameter.</li> 
+                    <li style="font-size: 14px">We currently are aiming to simply post a simple text tweet, but there are multiple parameters we could add. All of which can be found in the API documentation <a href="https://dev.twitter.com/rest/reference/post/statuses/update" target="_blank">here.</a></li> 
+                    <li style="font-size: 14px"><em><b>Line 14</b></em> Is the actual post function. ‘statuses/update’ implies that we are going to post a tweet. The tweet argument is our previously established status that we will be posting and finally the success argument is a function that we have below that lets us know if our tweet was successfully posted on our timeline.</li>
+                    <li style="font-size: 14px"><em><b>Lines 16 - 25</b></em> showcase the function that will let the bot tell us if the post was successfully posted or not. The only argument we currently are interested in is err, which from Twitter's response, lets us know if the tweet was posted or not. If successful, it will appear as such.</li>
+                    <br><br><img src="howTo_Pictures/VS Code Examples/POST Bot Success.png" style="max-width: 60%"><br>
+                    </ul> </p> <br>
+
+                    <p style="font-size: 14px">From this picture we see the command prompt informing us the bot was running, the tweet posted successfully, and after refreshing the page, the tweet on our timeline. Should their have been an error, there would have been another message on the command prompt. </p> <br>
+                
+			</section><br><hr style="size:3px"><br>
+			<section>
+				<h2><b>Searching through Tweets</b></h2><br>
+                <p style="font-size: 14px">Now that we posted a simple tweet, let’s look at how we can search Twitter.
+                     The API allows us to search through Tweets for keywords, dates, names, etc. There are many parameters you can set to search for, but in this case, we will be searching simply for the keyword Ice Cream after the date 2015-06-01.
+                     We are looking for only two responses.  </p><br>
+
+             <script src="https://pastebin.com/embed_js/TEFKMigZ"></script><br><br>
+
+				<p style="font-size: 14px">Looking here now, lines 09 – 12 establish our search parameters. Imagine this is essentially what we would be entering into the search bar on twitter. 
+                    q: is the txt that would be going into the bar (in this case we are searching for the Keyword Ice Cream since June of 2015) and count is the number of tweets we want the server to respond with(in this case we only want 2). 
+                    To be clear, if we run this search bot multiple times, each response would be random, meaning that there is a very strong likelihood that one response won’t necessarily be the exact same as the last one. 
+                    Line 14  is the actual get command. The ‘search/tweet’ is the command to the API, parameters is our set parameters, and dataReceived is the servers response. Lines 16-19, the function is simply displaying the servers response. 
+                    The servers response will be in JSON and from that we can cherry pick the data from it. Here is an example of what it would look like. </p>
+
+                    //PLACE A RESPONSE IMAGE HERE<br><br>
+
+                <p style="font-size: 14px">This may appear as a cluster of data, and it is, but should you want to store certain information or have the bot search for specific tweets, we can cherry pick information from this response and work with it.
+                     As an example, looking at the JSON response, it illustrates first four lines illustrate the date the tweet was posted, the tweets ID and finally the text was posted. For future projects we could interact with this data. .</p>
+				
+			</section><br><hr><br>
+            <section>
+                <h2><b>What Does this Communication Look Like</b></h2><br>
+                <p style="font-size: 14px">We touched on the code to send a command to Twitters servers and briefly showcased what a response looks like, but you may be asking yourself, “What the hell are we actually sending?”.
+                  That is a great question. The twit library we downloaded is simplifying the process for us. What it is breaking down is this: </p><br>
+
+             <iframe src="https://pastebin.com/embed_iframe/4LKmj6fu" style="border:none;width:100%"></iframe>
+				<p style="font-size: 14px">This is essentially what the twit library is helping us with. It is sending a request like the example above to Twitters servers. This example above is A GET request like we did for the search request we did before.
+                     As you can see, the request can be broken down into a couple of sections. 
+                     <ul>
+                          <li style="font-size: 14px"> First it is setting up the command,<em><b>GET https://api.twitter.com/1.1/search/tweets.json?</b></em>, informing the Twitter that we will be searching, and would like a JSON package returned</li> 
+                          <li style="font-size: 14px"> <em><b>q</b></em> is what we will be searching for </li>
+                          <li style="font-size: 14px"> Each tweet has a unique id given to it,<em><b>since_id</b></em> places a parameter to search for tweets after this Tweet's id</li>
+                          <li style="font-size: 14px"><em><b>max_id</b></em>means to not look at tweets after that tweet </li>
+                          <li style="font-size: 14px"><em><b>result_type</b></em> means it can return both popular and recent tweets, otherwise we could specify we only want the popular or recent tweets </li> 
+                          <li style="font-size: 14px">Finally <em><b>count</b></em> means that the server should only respond with the data of 4 tweets.</li> 
+                    </ul>
+                        All of this information is being passed to the server. Twit helps to simplify this process by allowing us to break down the complexity through the use of simple functions.
+                        twit also allows us to set all the search parameters seperately rather than writing out our long command. </p>
+
+                <p style="font-size: 14px">As for the Servers response, the server responds in JSON. JSON is JavaScript Object Notation and is essentially a format for which to interchange or communicate data. Oversimplified, it is a data format.
+                     As we have seen in the previous example it can appear to be very confusing, but the reality is that you can access multiple points of data throughout the returned information. Below is a the response to our request above. </p><br>
+
+                     <script src="https://pastebin.com/embed_js/ZFeYKQc1"></script><br><br>
+
+                    <p style="font-size: 14px"> As you can see, it is a monumnetal amount of data that was returned. And this is the result for only 4 tweets that we asked for. From the example above I am going to break it down into one slightly smaller section that will allow me to
+                        explain what Twitter is sending back and how we could use this data.</p><br>
+
+                        <script src="https://pastebin.com/embed_js/zKrwrTmh"></script><br><br>
+
+                    <p style="font-size: 14px">This section above is the search response for only one tweet. This vast section incorporates a large amount of data being returned, including information not only about the tweet, but also about the user.
+                        It you want to cherry pick data from this response, we can see the time the tweet was sent, the text and hashtags it had, how many retweets it had and we can even get the users name, location, and profile colors.
+                        Does are just small portions being returned for one tweet. Using information such as that listed above, individuals can look for specific information an have their bots interact with users. IF you take time to dissect it, their is a lot of useful information here.</p><br>
+
+            </section>
+		</div>
+        <button class="button" onclick="window.location.href='/C:/Users/Sebastian/Desktop/VS%20Code/OSU%20School%20Work/CS%20290/howTo/pageTwo.html'">Previous</button>
+        <button class="button" onclick="window.location.href='/C:/Users/Sebastian/Desktop/VS%20Code/OSU%20School%20Work/CS%20290/howTo/pageFour.html'">Next</button>
+	</div>
+</div>
+<br><br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<br><br>
+</body>
+</html>

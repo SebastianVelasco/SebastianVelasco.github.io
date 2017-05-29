@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A Twitter Bot How-to</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../cs290-style.css">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-9 col-offset-2">
+			<h1>A Note on How to Use the STREAMING API</h1>
+			<section>
+				<p style="font-size: 14px">Now you may be wondering what is this STREAMING API and how does it differ from what we have already been using. 
+                    Think of the STREAMING API as a continuous request rather than a one time request as we have been doing. We are essentially communicating with Twitter's servers continuously and are asking for updates. 
+                    As long as there is a connection, specifically an open HTTPS connection between your computer and their servers, Twitter will continously monitor for "events".
+                    What this  means is that our bot can now interact or respond to certain "events". 
+                    "Events" are for example user interaction with our bot and result in our bot taking actions such as responding to people when they follow or mention you. 
+                    There are many other aspects and things we can do but in this example we are only going to simply look at issuing a response for when someone follows you. </p> <br>
+
+                <script src="https://pastebin.com/embed_js/GbXPYAa1"></script>><br>
+
+                <p style="font-size: 14px">As we can see there are a couple new lines.
+                    <ul>
+                          <li style="font-size: 14px"><em><b>Line 10</b></em>  creates a new stream and <em><b>Line 12</b></em> turns the stream on and essentially tells the bot what “event” to look for. In this case, we will be looking for when someone follows the bots page. If someone follows, it will execute the followMe function.</li> 
+                          <li style="font-size: 14px"><em><b>Lines 14 and 15</b></em> are simply creating the variables to hold the followers screen name and the followers real name.</li> 
+                          <li style="font-size: 14px"><em><b>Lines 17 - 37</b></em> incorporate the function followMe.This functions argument takes into account the response from Twitter with the information of the user who followed you. The users name and screen name are then transferred to the variables in in <em><b>lines 18 and 19</b></em></li>
+                          <li style="font-size: 14px"><em><b>Lines 25 - 36</b></em>  hold our response message that will be posted back to the follower. <em><b>Line 25</b></em> posts the tweet and <em><b>Lines 27 - 36</b></em> provide a console message informing us whether or not the tweet was successfully posted.</li> 
+                    </ul> 
+                         </p> <br>
+                        <p> As always I encourage you two try this code on your own and have a friend follow you to test the response.
+                             As previously noted, their are other "events" that can trigger your bot and if you want to see what they are documentation can be found <a href="https://dev.twitter.com/streaming/reference" target="_blank">here.</a></p><br>
+                
+			</section><br><hr style="size:3px"><br>
+
+			<section>
+				<h2><b>A Simple Example of a Bot</b></h2><br>
+                <p style="font-size: 14px">The last example will be of functional bot. This bot will incorporate pieces from the previous code examples, except for the STREAMING API example.
+                     When this bot is running, it will randomly select a car company name, convert it to binary, and post that conversion as a question. 
+                     30 seconds later, the bot will tweet the correct answer right after. 
+                     This is a simple bot that essentially posts a puzzle and solution. </p><br>
+
+             <script src="https://pastebin.com/embed_js/vx2mw58J"></script><br><br>
+
+				 <p style="font-size: 14px">As we can see there are a couple new lines.
+                    <ul>
+                          <li style="font-size: 14px"><em><b>Lines 1 - 8</b></em> Should appear familiar as we have been using the same lines of code in every example.</li> 
+                          <li style="font-size: 14px"><em><b>Lines 11 - 81</b></em> hold the tweetIt function which execute the process</li> 
+                          <li style="font-size: 14px"><em><b>Lines 13 - 40</b></em> hold the function convert. Within the function it holds an array with the names, and generates a random number to choose from the array. Once the company is chosen it stores the original name and converts it to binary. Finally it returns an array with both the name and the binary conversion</b></em></li>
+                          <li style="font-size: 14px"><em><b>Lines 47 - 62 and 65 - 78</b></em> should also appear familiar as they are creating the tweet and posting to our timeline.</li> 
+                          <li style="font-size: 14px">Finally, <em><b>Lines 64 - 81</b></em> are simplky delaying the folow up tweet 30 seconds as to give time to any of our followers to guess. </li> 
+                    </ul> 
+                    </ul> 
+                         </p> <br>
+                         <p>It should be noted that you should limit the number of times your bot can tweet in a certain amount of time. Twitter is not to fond of bots that can tweet at ridiculous speeds. 
+                             In our example above, if the timer were not in place, both tweets would be sent essentially simultaneously. 
+                              It is recommended that you limit the speed at which you bot posts multiple tweets as abusing the system can result in termination of your bot and of your account.</p><br>
+
+                            <p>As you can imagine we can change this example up to incorporate many other things such as sending the puzzle to whomever follows us but this example is merely to showcase a simple bot. 
+                                I would like to encourage you to play around with any ideas that you may have no matter how trivial they may appear.</p><br>
+				
+			</section>
+		</div>
+
+        <button class="button" onclick="window.location.href='/C:/Users/Sebastian/Desktop/VS%20Code/OSU%20School%20Work/CS%20290/howTo/pageThree.html'">Previous</button>
+        <button class="button" onclick = "window.location.href='/C:/Users/Sebastian/Desktop/VS%20Code/OSU%20School%20Work/CS%20290/howTo/pageCon.html'">Next</button>
+
+	</div>
+</div>
+<br><br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<br><br>
+</body>
+</html>
