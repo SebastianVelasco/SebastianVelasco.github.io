@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A Twitter Bot How-to</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../cs290-style.css">
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-9 col-offset-2">
+			<h1>Playing with Twitter's REST and STREAMING API's</h1>
+			<section>
+				<p style="font-size: 14px">Now that we have what we need to get your started, you may be wondering what exactly an API is. API simply stands for Application Programming Interface, which is essentially a complex name for a simple concept. Oversimplified, all an API is, is an interface that allows individual programs (or users) to interact with certain features of another program. 
+                    It is essentially a form that dictates a form of communication between on program and another. This allow for new and interesting things to happen as one program can communicate and receive data from another.</p> <br>
+                <p style="font-size: 14px">If you want a more detailed explanation of how it all works here is a video on youtube that goes into a much more detailed explanation.</p><br>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/s7wmiS2mSXY" frameborder="0" allowfullscreen></iframe><br><br>
+
+                <p style="font-size: 14px">API’s are important because they contribute to the cool things that you can do or what you see on the web. We will be using the twit library to help us use Twitters REST and STREAMING API. To quickly differentiate the two, the REST and STREAMING API is very simple. 
+                    The streaming API is essentially a continuous request to Twitter’s servers via an HTTP connection. All this means is that there is continuous communication between Twitter and your program, which allows for cool things to happen during individual “events” such as instant replies if someone follows or mentions you. 
+                    The REST API essentially executes a command and terminates communication until the next request is sent to Twitter.This means you can send a request for data, such as searching for individual tweets or keywords and Twitter will return the information to you and wait for the next request. </p> <br>
+                
+			</section><br><hr style="size:3px"><br>
+
+			<section>
+				<h2><b>Let's Get Started</b></h2><br>
+                <p style="font-size: 14px">Now that we have all the components you need to get started with your bot, lets introduce you to some code that will get you going. I will be going line by line to introduce to you the commands and what they are for. As state before, your keys and tokens should remain hidden. 
+                    However, for these examples I will demonstrate one method to help keep your keys and tokes hidden should you decide to share your Twitter bots code with the world. </p><br>
+
+             <script src="https://pastebin.com/embed_js/r7VDc2Gy"></script><br><br>
+
+             <p style="font-size: 14px"><b>Here is keys.js</b></p><br><script src="https://pastebin.com/embed_js/zzASJJTd"></script><br><br>
+
+				<p style="font-size: 14px">You will want to begin your twitter bot with a new JavaScript file, I decided to name mine twtterBot.js.</p>
+                <p style="font-size: 14px">Here are the first few lines of code. 
+                    <em><b>Line 1</b></em> is a simple console message so the user knows the program has started running. This is an optional pieces of code, but some such as myself find it useful. The more important lines are 3, 4 and 8.
+                    <em><b>Line 3</b></em> calls in the twit library and allows us to access its functions. <em><b>Line 4</b></em> calls in the keys.js, which is a separate JavaScript file, within the same folder, where we are currently holding our key information.
+                    All you need to do in that js file is to copy and paste your individually created key and access tokens that were created for your bot. Should you want to share your bots code with the world, simply upload a blank version of keys.js without your API key or access tokens.
+                    <em><b>Line 8</b></em> is the creation a a new twit object and now sets us up to get started. You may be wondering what <em><b>Line 6</b></em> is for, that is simply a test to determine if the keys are actively being shared.</p>
+                <p style="font-size: 14px">This will be the first step towards creating our bot. Consider this the foundation.</p>
+                <p style="font-size: 14px">We will be using Twitters REST API to both post and search for Tweets. Afterwards I will touch on the STREAMING API and finally I will showing you the code for a simple bot.</p>
+                <p style="font-size: 14px">As a reminder, you will be running this bot via your command line, and Using my example name to illustrate my point, remember that your execution code will look like this: node fileNameHere. Ex.<code> node twtterBot.js</code></p>
+                <p style="font-size: 14px">Lets get you started with posting.</p><br>
+				
+			</section>
+		</div>
+
+        <button class="button" onclick="window.location.href='/C:/Users/Sebastian/Desktop/VS%20Code/OSU%20School%20Work/CS%20290/howTo/pageOne.html'">Previous</button>
+        <button class="button" onclick = "window.location.href='/C:/Users/Sebastian/Desktop/VS%20Code/OSU%20School%20Work/CS%20290/howTo/pageThree.html'">Next</button>
+
+	</div>
+</div>
+<br><br>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<br><br>
+</body>
+</html>
